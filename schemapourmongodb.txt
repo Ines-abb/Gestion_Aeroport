@@ -1,0 +1,104 @@
+{
+    "id" : string,
+    "compagnie" : string,
+    "avion" : {
+        "id" : string,
+        "modele" : {
+            "nom": string,
+            "nbPassagers": number,
+            "vitesseMax": number,
+            "type": string,
+            "vitesseRotMax": number,
+            "pousseeMax": number
+        } 
+    }, 
+    "pilote_1" : {
+        "id" : integer,
+        "tel" : string,
+        "nom" : string,
+        "prenom" : string,
+        "ddn" : date? string,
+        "adresse" : {
+            "rue" : string,
+            "numero" : int,
+            "complement" : string,
+            "ville" : string,
+            "pays" : string
+        }
+
+    },
+    "pilote_2" : {
+        "id" : integer,
+        "tel" : string,
+        "nom" : string,
+        "prenom" : string,
+        "ddn" : date? string,
+        "adresse" : {
+            "rue" : string,
+            "numero" : int,
+            "complement" : string,
+            "ville" : string,
+            "pays" : string
+        }
+
+    },
+    "porteEmbarquement" : {
+        "id" : string,
+        "terminal" : string,
+
+    },
+    "passagers" : [
+        {
+            "tel" : string,
+            "nom" : string,
+            "prenom" : string,
+            "ddn" : date? string,
+            "adresse" : {
+                "rue" : string,
+                "numero" : int,
+                "complement" : string,
+                "ville" : string,
+                "pays" : string
+            },
+            "bagage" : {
+                "nombre" : int,
+                "poidsTotal" : float
+            }
+        },
+        ...
+    ],
+    "destination": string,
+    "heureDepart": Date,
+    "heureEmbarquement": Date,
+    "hoteAccueil1":{
+        "id" : integer,
+        "tel" : string,
+        "nom" : string,
+        "prenom" : string,
+        "ddn" : date? string,
+        "adresse" : {
+            "rue" : string,
+            "numero" : int,
+            "complement" : string,
+            "ville" : string,
+            "pays" : string
+        }
+    }
+    "hoteAccueil2":{
+        "id" : integer,
+        "tel" : string,
+        "nom" : string,
+        "prenom" : string,
+        "ddn" : date? string,
+        "adresse" : {
+            "rue" : string,
+            "numero" : int,
+            "complement" : string,
+            "ville" : string,
+            "pays" : string
+        }
+    }
+
+    "provenance": string,
+    "heureArrivee": Date
+}

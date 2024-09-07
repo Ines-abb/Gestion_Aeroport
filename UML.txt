@@ -1,0 +1,155 @@
+@startuml
+
+class Terminal{
+    nom : String {key}
+    longitude : float { -180 <= longitude <= 180 }
+    latitude : float {-90  <= latitude <= 90 }
+
+}
+
+class Porte_embarquement{
+    identifiant : int {local key}
+}
+
+class Avion{
+    identifiant : String
+}
+
+abstract class Modele{
+    nb_passagers : int {nb_passagers >= 0}
+    vitesse_max : float {vitesse_rot_max >= 0}
+    nom : String
+}
+
+class turbopropulseur{
+    vitesse_rot_max : float {vitesse_rot_max >= 0}
+}
+
+class turboreacteur{
+    poussee_max : float {poussee_max >= 0}
+}
+
+class CompagnieFabriquant {
+}
+
+
+
+abstract class Vol {
+id: string {key}
+
+}
+note top of Vol
+    le nb_passagers du modèle d'avion est forcément supérieur ou égal au nombre de passagers du vol
+end note
+
+abstract class Personne {
+nom : string
+prenom : string
+date_naissance : date
+adresse : string
+}
+note left of Personne
+    (nom, prenom, date_naissance) {key}
+end note
+
+
+class MembrePersonnel {
+id : int {key}
+/'verifier format numero'/
+numero_telephone : int {key}
+}
+
+class Pilote {
+}
+class Steward {
+}
+
+class HoteDAccueil{
+}    
+class PersonnelTechnique {
+}
+
+class Passager {
+numero_telephone[0..1] : int {unique}
+
+}
+
+
+class VolDepart {
+destination : string
+heure_depart : datetime
+heure_embarquement : datetime
+}
+note left of VolDepart::heure_embarquement
+    heure_depart > heure_embarquement
+end note
+
+class VolArrivee {
+provenance : string
+heure_arrivee : datetime
+}
+
+Vol "*"--"1" CompagnieVol : est geré par > 
+Vol "*" -- "*" Passager : comporte > 
+Vol "*" -- "2" Pilote : a > 
+Vol "*" -- "2..*"Steward : a > 
+VolDepart "*" -- "2" HoteDAccueil : a > 
+Vol "*" -- "1" Porte_embarquement
+
+(Vol, Passager) .. Bagage
+class Bagage {
+	nombre_bagages : int
+	poids_total_bagages : float
+}
+note right of Bagage::nombre_bagages
+  Doit etre plus grand ou egal a 0
+end note
+note right of Bagage::poids_total_bagages
+  Doit etre plus grand ou egal a 0
+end note
+
+abstract class Compagnie {
+nom : string {key}
+}
+
+class CompagnieVol {
+}
+
+
+Terminal *-- "*" Porte_embarquement
+PersonnelTechnique "1..*" - "1"  Terminal : travaille dans > 
+Porte_embarquement "*"-- "1..*" Modele : peut desservir > 
+note on link: - Il faut verifier pour un vol si son avion (son modele) peut effectivement embarquer/debarquer sur une porte donnee. 
+Modele "*" - "1"  CompagnieFabriquant : a une > 
+Avion "*" - "1" Modele : a un >
+Vol "*" - "1" Avion : ce fait avec un >
+
+Modele <|-- turbopropulseur
+Modele <|-- turboreacteur
+
+Compagnie <|-- CompagnieFabriquant
+
+MembrePersonnel <|-- Pilote
+MembrePersonnel <|-- Steward
+MembrePersonnel <|-- HoteDAccueil
+MembrePersonnel <|-- PersonnelTechnique
+
+Personne <|-- Passager 
+Personne <|-- MembrePersonnel 
+
+/' héritage non exclusif '/
+note "{NON X}" as N2
+N2..Passager
+N2..MembrePersonnel
+
+Vol <|-- VolDepart
+Vol <|-- VolArrivee
+
+Passager "*"--"1..*" Vol : est lié  > 
+
+
+Compagnie <|-- CompagnieVol
+
+
+
+@enduml

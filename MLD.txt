@@ -1,0 +1,97 @@
+// tous les attributs seront supposes NOT NULL par defaut
+
+CompagnieVol(#nom : string)
+CompagnieFabriquant(#nom : string)
+// contraintes sur l'heritage par classe filles et mere abstraite
+Intersection(Projection(CompagnieVol,nom), Projection(CompagnieFabriquant,nom)) = {}
+
+
+
+Modele(#nom : string, nb_passagers : int,  vitesse_max : float, vitesse_rot_max : float, poussee_max : float,
+compagnieFabriquant=>CompagnieFabriquant.nom, t:{'turbopropulseur','turboreacteur'})
+avec {poussee_max NULLABLE, vitesse_rot_max NULLABLE, nb_passagers >= 0, vitesse_max >= 0}
+// contraintes sur l'heritage par classe mere abstraite
+NOT (t = 'turbopropulseur' AND (poussee_max))
+NOT (t = 'turboreacteur' AND (vitesse_rot_max))
+poussee_max == NULL OR poussee_max >= 0
+vitesse_rot_max == NULL OR vitesse_rot_max >= 0
+
+
+
+Modele_Porte_Embarquement(#modele=>Modele, #identifiant_porte=>PorteEmbarquement.identifiant, #terminal_porte=>PorteEmbarquement.terminal)
+//contrainte relation 1..N:N (Modele,PorteEmbarquement) 
+Projection(Modele, nom) = Projection(Modele_Porte_Embarquement, modele)
+
+
+Avion(#identifiant : string, modele=>Modele.nom)
+
+
+
+Passager(#nom : string, #prenom : string, #date_naissance : string, adresse : string, numero_telephone : int)
+avec {numero_telephone UNIQUE et NULLABLE
+(nom, prenom, date_naissance) => Personne(nom, prenom, date_naissance)
+}
+
+PersonnelTechnique(#id, numero_telephone : int, nom : string, prenom : string, date_naissance : date, adresse : string, terminal=>Terminal.nom) 
+avec {numero_telephone KEY, (nom, prenom, date_naissance) => Personne(nom,prenom,date_naissance)}
+//contrainte relation 1..N:1
+Projection(PersonnelTechnique,terminal)=Projection(Terminal,nom)
+
+Steward(#id, numero_telephone : int, nom : string, prenom : string, date_naissance : date, adresse : string) 
+avec {numero_telephone KEY, (nom, prenom, date_naissance) KEY}
+
+Pilote(#id, numero_telephone : int, nom : string, prenom : string, date_naissance : date, adresse : string) 
+avec {numero_telephone KEY, (nom, prenom, date_naissance) KEY}
+
+HoteDAccueil(#id, numero_telephone : int, nom : string, prenom : string, date_naissance : date, adresse : string) 
+avec {numero_telephone KEY, (nom, prenom, date_naissance) KEY}
+
+//contrainte sur l'heritage (MemberPersonnel) par classes filles et classe mere abstraite
+Intersection(Projection(PersonnelTechnique, id),Projection(Steward, id)) = {}
+Intersection(Projection(PersonnelTechnique, id),Projection(Pilote, id)) = {}
+Intersection( Projection(PersonnelTechnique, id),Projection(HoteDAccueil, id)) = {}
+Intersection(Projection(Steward, id),Projection(Pilote, id)) = {}
+Intersection(Projection(Steward, id),Projection(HoteDAccueil, id)) = {}
+Intersection(Projection(Pilote, id),Projection(HoteDAccueil, id)) = {}
+
+
+Terminal(#nom : string, longitude : float, latitude : float) 
+avec {-180 <= longitude <= 180, -90 <= latitude <= 90}
+
+PorteEmbarquement(#identifiant, #terminal=>Terminal.nom) 
+
+
+Avion(#identifiant : string, modele=>Modele.nom)
+
+
+// par reference
+Vol(#id : string, compagnieVol=>CompagnieVol.nom, avion=>Avion.identifiant, pilote_1=>Pilote.id, pilote_2=>Pilote.id, porteEmbarquement=>PorteEmbarquement.identifiant)
+avec {pilote_1 <> pilote_2}
+
+Bagage(#vol=>Vol.id, #passager_nom=>Passager.nom, #passager_prenom=>Passager.prenom, #passager_date_naissance=>Passager.date_naissance, nombre_bagages : int, poids_total_bagages : float) avec{nombre_bagages >=0 AND poids_total_bagages>=0}
+//contrainte relation Bagage:Vol
+Projection(Bagage,vol) = Projection(Vol, id)
+
+
+//contrainte relation 1:1..N
+Projection(PorteEmbarquement,identifiant) = Projection(Vol,porteEmbarquement)
+
+
+Vol_Steward(#vol=>Vol, #steward=>Steward)
+//contrainte relation Steward:Vol_Steward
+Projection(Vol_Steward,steward) = Projection(Steward, id)
+Pour tous les vols dans la table (vol_i), il faut verifier que la cardinalite de (Restriction(Vol_Steward, vol = vol_i)) est superieure ou egale a 2.
+
+
+VolDepart(#id=>Vol, destination : string, heure_depart : datetime, heure_embarquement : datetime, hoteDAccueil_1=>HoteDAccueil.id, hoteDAccueil_2=>HoteDAccueil.id)avec{hoteDAccueil_1<>hoteDAccueil_2 AND heure_depart<heure_embarquement}
+
+
+VolArrive(#id=>Vol, provenance : string, heure_arrivee : datetime)
+// contraintes pour reference et classe mere abstraite
+Intersection(Projection(VolDepart, id),Projection(VolArrive, id)) = {}
+Projection(Vol,id) = Union (Projection(VolDepart,id), Projection(VolArrive,id))
+
+
+Personne(#nom: String, #prenom:String, #date_naissance:Date)
+// Contraintes sur l'heritage
+Projection(Personne, (nom, prenom, date_naissance)) = Projection(MembrePersonnel, (nom, prenom, date_naissance)) U Projection(Passager, (nom, prenom, date_naissance))

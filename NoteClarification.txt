@@ -1,0 +1,39 @@
+Note de Clarification
+
+Seance 1:
+
+- Tous les attributs sont NOT NULL par defaut.
+- Tous les heritages sont exclusifs par defaut.
+
+Clarifications concernant les vols:
+- Un vol est gere par une seule compagnie.
+- Une escale compte comme deux vols distincts, nous comptons donc juste le vol associe a notre aeroport.
+- Il n'y a pas d'id unique pour le passager or cela est le cas pour les membres du personnel.
+- Il est possible d'avoir un vol a vide (vol de marchandise) ce qui implique donc qu'il n'y a pas de passagers. 
+- La provenance et la destination sont representees par les aeroports (Elles seront donc representees sous une forme String et non une classe).
+- L'heure de depart et d'arrivee des vols sont des datetime permettant d'obtenir l'annee.
+- Les id de 2 vols de meme destination se passant la meme date mais a des annees differentes sont differents. Un vol a donc un identifiant qui lui est unique (il sera donc la cle primaire).
+- l'heure de depart est superieure a l'heure d'embarquement.
+- Il faut verifier pour un vol si son avion (son modele) peut effectivement embarquer/debarquer sur une porte donnee. 
+
+Clarifications concernant les compagnies:
+- Un Modele a forcement une compagnie de fabrication.
+- Le nom de la compagnie est unique (il sera donc la cle primaire).
+
+Autres Clarifications:
+- Un passager peut avoir un nombre different de bagages par vol: Il est necessaire de creer une classe association. 
+- Le nombre de passagers accedant au vol ne peut pas depasser la capacite maximale du modele d'avion. 
+- l'identifiant d'une porte d'embarquement n'est pas unique. Le local key de la porte est son identifiant.
+- La localisation est reprensentee par deux attributs de type float (longitude et latitude).
+- L'identifiant d'un membre du personnel est unique (il sera donc la cle primaire).
+- Le personnel technique travaille dans un terminal donne. Il y a au moins un personnel technique dans un terminal. 
+- la cle de personne est nom, prenom et date de naissance. 
+
+
+Seance 2:
+
+- Le nom du modele est une cle primaire.
+- Un passager est lié à au moins un vol,
+- Le numero de telephone de la classe des membres du personnel est une cle car il est unique et non null.
+- L'héritage sur personne n'est pas exclusif car un membre du personnel pourrait etre un passager.
+- la classe membre_personnel est abstraite car un membre du personnel peut soit etre un pilote, soit etre un steward, un hote d'accueil ou un membre du personnel technique. 

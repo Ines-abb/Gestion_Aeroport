@@ -1,0 +1,172 @@
+attributs que l'on va prendre en compte : 
+
+nom_terminal
+longitude_terminal
+latitude_terminal
+id_porte_embarquement
+nom_passager
+prenom_passager
+ddn_passager
+adresse_passager
+num_tel_passager
+nombre_bagage
+poids_total_bagage
+nom_modele
+nb_passagers
+vitesse_max
+vitesse_rot_max
+poussee_max
+type_modele
+nom_compagnie_fabriquant
+id_avion
+id_vol
+nom_compagnie_vol
+id_pilote1
+id_pilote2
+id_hote_accueil1
+id_hote_accueil2
+destination
+heure_depart
+heure_embarquement
+provenance
+heure_arrivee
+
+-----------
+
+nom_terminal => latitude_terminal, longitude_terminal
+nom_passager, prenom_passager, ddn_passager => adresse_passager, num_tel_passager
+id_vol, nom_passager, prenom_passager, ddn_passager => nombre_bagage, poids_total_bagage
+
+nom_modele=> nb_passagers, vitesse_max, vitesse_rot_max, poussee_max, type_modele, nom_compagnie_fabriquant
+id_avion=> nom_modele
+
+id_vol=>nom_compagnie_vol, id_avion, id_pilote1, id_pilote2, id_porte_embarquement, id_hote_accueil1,id_hote_accueil2, destination,heure_depart, heure_embarquement, provenance, heure_arrivee
+-----------
+
+DFE = {
+    nom_terminal => latitude_terminal;
+    nom_terminal => longitude_terminal;
+    nom_passager, prenom_passager, ddn_passager => adresse_passager;
+    nom_passager, prenom_passager, ddn_passager => num_tel_passager;
+    id_vol, nom_passager, prenom_passager, ddn_passager => poids_total_bagage;
+    id_vol, nom_passager, prenom_passager, ddn_passager => nombre_bagage;
+    nom_modele=> nb_passagers;
+    nom_modele=> vitesse_max;
+    nom_modele=> vitesse_rot_max;
+    nom_modele=> poussee_max;
+    nom_modele=> type_modele;
+    nom_modele=> nom_compagnie_fabriquant;
+    id_avion => nom_modele;
+    id_vol => nom_compagnie_vol;
+    id_vol => id_avion;
+    id_vol => id_pilote1;
+    id_vol => id_pilote2;
+    id_vol => id_porte_embarquement;
+    id_vol => id_hote_accueil1
+    id_vol => id_hote_accueil2
+    id_vol => destination
+    id_vol => heure_depart
+    id_vol => heure_embarquement
+    id_vol => provenance
+    id_vol => heure_arrivee
+}
+
+FT = DFE + {
+    id_vol => nom_modele
+    id_vol=> nb_passagers;
+    id_vol=> vitesse_max;
+    id_vol=> vitesse_rot_max;
+    id_vol=> poussee_max;
+    id_vol=> type_modele;
+    id_vol=> nom_compagnie_fabriquant;
+}
+
+CM = DFE
+
+cle = {
+    nom_terminal
+    id_vol
+    nom_passager
+    prenom_passager
+    ddn_passager
+}
+
+minimale car nom_terminal
+    id_vol
+    nom_passager
+    prenom_passager
+    ddn_passager peuvent pas etre determines par d'autres attributs 
+et ... determinent tous les autres attributs
+
+DONC table
+#id_vol, #nom_passager, #prenom_passager, #ddn_passager, #nom_terminal, latitude_terminal, 
+longitude_terminal, adresse_passager, num_tel_passager, nombre_bagage, 
+poids_total_bagage, nom_modele, nb_passagers, vitesse_max, vitesse_rot_max, 
+poussee_max, type_modele, nom_compagnie_fabriquant, nom_compagnie_vol, id_avion, 
+id_porte_embarquement, id_pilote1, id_pilote2, id_hote_accueil1, id_hote_accueil2, 
+destination, heure_arrivee, heure_depart, heure_embarquement, provenance
+
+1 NF car cle et attributs atomiques
+pas 2 NF car id_vol => id_avion, et donc depend d'une partie de la cle
+
+Transformation en 2 NF
+table 1
+#nom_terminal => table 5, #id_vol => table 4, #nom_passager=> table 4, #prenom_passager=> table 4, #ddn_passager=> table 4
+
+table 2
+#id_vol, id_avion, id_porte_embarquement, id_pilote1, id_pilote2, id_hote_accueil1, id_hote_accueil2, 
+destination, heure_arrivee, heure_depart, heure_embarquement, provenance, 
+nom_modele, nb_passagers, vitesse_max, vitesse_rot_max, 
+poussee_max, type_modele, nom_compagnie_fabriquant, nom_compagnie_vol
+
+
+table 3
+#nom_passager, #prenom_passager, #ddn_passager, adresse_passager, num_tel_passager
+
+table 4
+#id_vol => table 2, #nom_passager => table 3, #prenom_passager => table 3, #ddn_passager => table 3, poids_total_bagage, nombre_bagage
+
+table 5
+#nom_terminal, latitude_terminal, longitude_terminal
+
+
+
+
+Pas 3 nf car dans table 2 , id_avion => nom_modele , or id_avion ne fait pas partie de la cle
+
+Transformation en 3 NF
+table 1
+#nom_terminal => table 5, #id_vol => table 4, #nom_passager=> table 4, #prenom_passager=> table 4, #ddn_passager=> table 4
+
+table 2
+#id_vol, id_avion => table 2 bis, id_porte_embarquement, id_pilote1, id_pilote2, id_hote_accueil1, id_hote_accueil2, 
+destination, heure_arrivee, heure_depart, heure_embarquement, provenance, nom_compagnie_vol
+
+table 2bis
+#id_avion, nom_modele => table 2bisbis
+
+table 2bisbis
+#nom_modele, nb_passagers, vitesse_max, vitesse_rot_max, 
+poussee_max, type_modele, nom_compagnie_fabriquant
+
+table 3
+#nom_passager, #prenom_passager, #ddn_passager, adresse_passager, num_tel_passager
+
+table 4
+#id_vol => table 2, #nom_passager => table 3, #prenom_passager => table 3, #ddn_passager => table 3, poids_total_bagage, nombre_bagage
+
+table 5
+#nom_terminal, latitude_terminal, longitude_terminal
+
+
+Principales differences avec notre MLD
+Disparition de la table PorteEmbarquement, car porte embarquement ne DF pas le nom du terminal, et vice-versa
+Disparition de la table ModelePorteEmbarquement, car le modele ne DF pas la porte embarquement et vice versa, donc pas representable dans cette approche via les DF
+table 5 correspond a notre table Terminal
+table 4 correspond a notre table Bagage
+table 3 correspond a notre table Passager
+table 2bisbis correspond a notre table Modele
+table 2 bis correspond a notre table avion
+table 2 ne correspond pas totalement a notre table Vol. En effet, on avait choisi un heritage par reference, hors dans ce cas-ci tous les attributs se retrouvent dans la classe mere
+table 1 ne correspond a aucune de nos tables, car au final on pouvait retrouver cette table via une jointure entre vol/avion/modèle/bagage/passager/porte/terminal
+
