@@ -1,0 +1,617 @@
+db.Vol.insertMany([
+    // Vol 1
+    {
+    "id" : "AH506",
+    "compagnie" : "Air France",
+    "avion" : {
+        "id" : "id_380",
+        "modele" : {
+            "nom": "A380",
+            "nbPassagers": 350,
+            "vitesseMax": 600,
+            "type": "turbopropulseur",
+            "vitesseRotMax": 800,
+            "pousseeMax": 35
+        }
+    },
+    "pilote_1" : {
+        "id" : 1,
+        "tel" : "06 22 55 99 66 88",
+        "nom" : " Pierre",
+        "prenom" : "Niney",
+        "ddn" : new Date("1999-12-28"),
+        "adresse" : {
+            "rue" : "Anatole France",
+            "numero" : 17,
+            "complement" : "Bis",
+            "ville" : "Marseille",
+            "pays" : "France"
+        }
+
+    },
+    "pilote_2" : {
+        "id" : 2,
+        "tel" :  "07 25 65 44 12",
+        "nom" : "Dupuis",
+        "prenom" : "Julien",
+        "ddn" : new Date("1965-06-28"),
+        "adresse" : {
+            "rue" : "avenue Guynemer",
+            "numero" : 23,
+            "complement" : "ter",
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+
+    },
+    "porteEmbarquement" : {
+        "id" : 1,
+        "terminal" : "2A",
+
+    },
+    "passagers" : [
+        {
+            "tel" : "06 55 88 55 88",
+            "nom" : "Legrand",
+            "prenom" : "Fabrice",
+            "ddn" : new Date("1999-12-28"),
+            "adresse" : {
+                "rue" : "allée Rolland Garros",
+                "numero" : 2,
+                "ville" : "Toulouse",
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 3,
+                "poidsTotal" : 37.2
+            }
+        },
+        {
+            "tel" : "07 52 51 55 66 88",
+            "nom" : "Verne",
+            "prenom" : "Jules",
+            "ddn" : new Date("1978-04-09"),
+            "adresse" : {
+                "rue" : "allée Rolland Garros",
+                "numero" : 2,
+                "ville" : "Toulouse",
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 9.8
+            }
+        },
+
+        {
+            "tel" : "06 01 88 08 88",
+            "nom" : "Macron",
+            "prenom" : "Emmanuel",
+            "ddn" : new Date("1972-03-17"),
+            "adresse" : {
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 15.8
+            }
+        }
+    ],
+    "destination": "Londres",
+    "heureDepart": new Date("2024-06-06T04:32:00Z"),
+    "heureEmbarquement": new Date("2024-06-06T03:32:00Z"),
+    "hoteAccueil1":{
+        "id" : 1,
+        "tel" : "07 00 29 14 88",
+        "nom" : "Jean",
+        "prenom" : "Rousseau",
+        "ddn" : new Date("1981-03-10"),
+        "adresse" : {
+            "rue" : "boulevard de Port Royal",
+            "numero" : 37,
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+    },
+    "hoteAccueil2":{
+        "id" : 2,
+        "tel" : "07 05 29 14 88",
+        "nom" : "La Fontaine",
+        "prenom" : "Jeanne",
+        "ddn" : new Date("1965-01-10"),
+        "adresse" : {
+            "rue" : "rue Maurice D'ocagne",
+            "numero" : 12,
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+    }
+    },
+    // Vol 2
+    {
+    "id" : "AH7855",
+    "compagnie" : "Transavia",
+    "avion" : {
+        "id" : "id_737",
+        "modele" : {
+            "nom": "Boeing 737",
+            "nbPassagers": 200,
+            "vitesseMax": 400,
+            "type": "turboréacteur",
+            "vitesseRotMax": 500,
+            "pousseeMax": 15
+        }
+    },
+    "pilote_1" : {
+        "id" : 1,
+        "tel" : "06 22 55 99 66 88",
+        "nom" : " Pierre",
+        "prenom" : "Niney",
+        "ddn" : new Date("1999-12-28"),
+        "adresse" : {
+            "rue" : "Anatole France",
+            "numero" : 17,
+            "complement" : "Bis",
+            "ville" : "Marseille",
+            "pays" : "France"
+        }
+
+    },
+    "pilote_2" : {
+        "id" : 2,
+        "tel" :  "07 25 65 44 12",
+        "nom" : "Dupuis",
+        "prenom" : "Julien",
+        "ddn" : new Date("1965-06-28"),
+        "adresse" : {
+            "rue" : "avenue Guynemer",
+            "numero" : 23,
+            "complement" : "ter",
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+
+    },
+    "porteEmbarquement" : {
+        "id" : 2,
+        "terminal" : "2C",
+
+    },
+    "passagers" : [
+        {
+            "tel" : "07 52 51 55 66 88",
+            "nom" : "Colomb",
+            "prenom" : "Christophe",
+            "ddn" : new Date("1961-09-07"),
+            "adresse" : {
+                "rue" : "allée Rolland Garros",
+                "numero" : 2,
+                "ville" : "Toulouse",
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 2.2
+            }
+        },
+        {
+            "tel" : "06 01 88 08 88",
+            "nom" : "Mbappe",
+            "prenom" : "Kilian",
+            "ddn" : new Date("1998-03-17"),
+            "adresse" : {
+                "pays" : "Spain"
+            },
+            "bagage" : {
+                "nombre" : 2,
+                "poidsTotal" : 18.2
+            }
+        },
+        {
+            "tel" : "07 55 29 14 88",
+            "nom" : "Veil",
+            "prenom" : "Simone",
+            "ddn" : new Date("1972-12-10"),
+            "adresse" : {
+                "pays" : "Spain"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 7.5
+            }
+        }
+    ],
+
+    "provenance": "Paris",
+    "heureArrivee": new Date("2024-06-15T11:32:00Z"),
+    },
+    // Vol 3
+    {
+    "id" : "AH5055",
+    "compagnie" : "Ryanair",
+    "avion" : {
+        "id" : "id_380",
+        "modele" : {
+            "nom": "A380",
+            "nbPassagers": 350,
+            "vitesseMax": 600,
+            "type": "turbopropulseur",
+            "vitesseRotMax": 800,
+            "pousseeMax": 35
+        }
+    },
+    "pilote_1" : {
+        "id" : 1,
+        "tel" : "06 22 55 99 66 88",
+        "nom" : " Pierre",
+        "prenom" : "Niney",
+        "ddn" : new Date("1999-12-28"),
+        "adresse" : {
+            "rue" : "Anatole France",
+            "numero" : 17,
+            "complement" : "Bis",
+            "ville" : "Marseille",
+            "pays" : "France"
+        }
+
+    },
+    "pilote_2" : {
+        "id" : 2,
+        "tel" :  "07 25 65 44 12",
+        "nom" : "Dupuis",
+        "prenom" : "Julien",
+        "ddn" : new Date("1965-06-28"),
+        "adresse" : {
+            "rue" : "avenue Guynemer",
+            "numero" : 23,
+            "complement" : "ter",
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+
+    },
+    "porteEmbarquement" : {
+        "id" : 1,
+        "terminal" : "2A",
+
+    },
+    "passagers" : [
+        {
+            "tel" : "06 55 88 55 88",
+            "nom" : "Legrand",
+            "prenom" : "Fabrice",
+            "ddn" : new Date("1999-12-28"),
+            "adresse" : {
+                "rue" : "allée Rolland Garros",
+                "numero" : 2,
+                "ville" : "Toulouse",
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 3,
+                "poidsTotal" : 37.2
+            }
+        },
+        {
+            "tel" : "07 52 33 11 66 88",
+            "nom" : "Nadal",
+            "prenom" : "Raphael",
+            "ddn" : new Date("1978-04-09"),
+            "adresse" : {
+                "pays" : "Spain"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 5.2
+            }
+        },
+        {
+            "tel" : "06 01 88 08 88",
+            "nom" : "Hugo",
+            "prenom" : "Victor",
+            "ddn" : new Date("1989-03-17"),
+            "adresse" : {
+                "pays" : "Royaume-Unis"
+            },
+            "bagage" : {
+                "nombre" : 2,
+                "poidsTotal" : 18.3
+            }
+        }
+    ],
+
+    "provenance": "Paris",
+    "heureArrivee": new Date("2024-06-20T11:32:00Z"),
+    },
+    // Vol 4
+    {
+    "id" : "AH5068",
+    "compagnie" : "Easyjet",
+    "avion" : {
+        "id" : "id_307",
+        "modele" : {
+            "nom": "A307",
+            "nbPassagers": 350,
+            "vitesseMax": 600,
+            "type": "turbopropulseur",
+            "vitesseRotMax": 800,
+            "pousseeMax": 35
+        }
+    },
+    "pilote_1" : {
+        "id" : 1,
+        "tel" : "06 22 55 99 66 88",
+        "nom" : " Pierre",
+        "prenom" : "Niney",
+        "ddn" : new Date("1999-12-28"),
+        "adresse" : {
+            "rue" : "Anatole France",
+            "numero" : 17,
+            "complement" : "Bis",
+            "ville" : "Marseille",
+            "pays" : "France"
+        }
+
+    },
+    "pilote_2" : {
+        "id" : 2,
+        "tel" :  "07 25 65 44 12",
+        "nom" : "Dupuis",
+        "prenom" : "Julien",
+        "ddn" : new Date("1965-06-28"),
+        "adresse" : {
+            "rue" : "avenue Guynemer",
+            "numero" : 23,
+            "complement" : "ter",
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+
+    },
+    "porteEmbarquement" : {
+        "id" : 1,
+        "terminal" : "1A",
+
+    },
+    "passagers" : [
+        {
+            "tel" : "06 55 88 55 88",
+            "nom" : "Legrand",
+            "prenom" : "Fabrice",
+            "ddn" : new Date("1999-12-28"),
+            "adresse" : {
+                "rue" : "allée Rolland Garros",
+                "numero" : 2,
+                "ville" : "Toulouse",
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 3,
+                "poidsTotal" : 37.2
+            }
+        },
+        {
+            "tel" : "06 15 99 55 12",
+            "nom" : "Borne",
+            "prenom" : "Elisabeth",
+            "ddn" : new Date("1960-04-19"),
+            "adresse" : {
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 9.52
+            }
+        },
+        {
+            "tel" : "06 01 88 08 88",
+            "nom" : "Hidalgo",
+            "prenom" : "Anne",
+            "ddn" : new Date("1989-03-17"),
+            "adresse" : {
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 2,
+                "poidsTotal" : 21.65
+            }
+        },
+        {
+            "tel" : "07 55 29 14 88",
+            "nom" : "Veil",
+            "prenom" : "Simone",
+            "ddn" : new Date("1972-12-10"),
+            "adresse" : {
+                "pays" : "Spain"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 7.36
+            }
+        }
+    ],
+    "destination": "Viennes",
+    "heureDepart": new Date("2024-06-29T04:32:00Z"),
+    "heureEmbarquement": new Date("2024-06-29T03:32:00Z"),
+    "hoteAccueil1":{
+        "id" : 1,
+        "tel" : "07 00 29 14 88",
+        "nom" : "Jean",
+        "prenom" : "Rousseau",
+        "ddn" : new Date("1981-03-10"),
+        "adresse" : {
+            "rue" : "boulevard de Port Royal",
+            "numero" : 37,
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+    },
+    "hoteAccueil2":{
+        "id" : 2,
+        "tel" : "07 05 29 14 88",
+        "nom" : "La Fontaine",
+        "prenom" : "Jeanne",
+        "ddn" : new Date("1965-01-10"),
+        "adresse" : {
+            "rue" : "rue Maurice D'ocagne",
+            "numero" : 12,
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+    }
+    },
+    // Vol 5
+    {
+    "id" : "AH5070",
+    "compagnie" : "Air France",
+    "avion" : {
+        "id" : "id_380",
+        "modele" : {
+            "nom": "A380",
+            "nbPassagers": 350,
+            "vitesseMax": 600,
+            "type": "turbopropulseur",
+            "vitesseRotMax": 800,
+            "pousseeMax": 35
+        }
+    },
+    "pilote_1" : {
+        "id" : 1,
+        "tel" : "06 22 55 99 66 88",
+        "nom" : " Pierre",
+        "prenom" : "Niney",
+        "ddn" : new Date("1999-12-28"),
+        "adresse" : {
+            "rue" : "Anatole France",
+            "numero" : 17,
+            "complement" : "Bis",
+            "ville" : "Marseille",
+            "pays" : "France"
+        }
+
+    },
+    "pilote_2" : {
+        "id" : 2,
+        "tel" :  "07 25 65 44 12",
+        "nom" : "Dupuis",
+        "prenom" : "Julien",
+        "ddn" : new Date("1965-06-28"),
+        "adresse" : {
+            "rue" : "avenue Guynemer",
+            "numero" : 23,
+            "complement" : "ter",
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+
+    },
+    "porteEmbarquement" : {
+        "id" : 1,
+        "terminal" : "2D",
+
+    },
+    "passagers" : [
+        {
+            "tel" : "06 55 88 55 88",
+            "nom" : "Legrand",
+            "prenom" : "Fabrice",
+            "ddn" : new Date("1999-12-28"),
+            "adresse" : {
+                "rue" : "allée Rolland Garros",
+                "numero" : 2,
+                "ville" : "Toulouse",
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 3,
+                "poidsTotal" : 37.2
+            }
+        },
+        {
+            "tel" : "07 52 51 55 66 88",
+            "nom" : "Verne",
+            "prenom" : "Jules",
+            "ddn" : new Date("1978-04-09"),
+            "adresse" : {
+                "rue" : "allée Rolland Garros",
+                "numero" : 2,
+                "ville" : "Toulouse",
+                "pays" : "France"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 9.5
+            }
+        },
+        {
+            "tel" : "06 15 99 55 12",
+            "nom" : "Lepetit",
+            "prenom" : "Hugo",
+            "ddn" : new Date("1986-04-19"),
+            "adresse" : {
+                "ville" : "Berlin",
+                "pays" : "Allemagne"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 12.5
+            }
+        },
+        {
+            "tel" : "06 01 88 08 88",
+            "nom" : "Hugo",
+            "prenom" : "Victor",
+            "ddn" : new Date("1989-03-17"),
+            "adresse" : {
+                "pays" : "Royaume-Unis"
+            },
+            "bagage" : {
+                "nombre" : 2,
+                "poidsTotal" : 18.1
+            }
+        },
+        {
+            "tel" : "07 55 29 14 88",
+            "nom" : "Veil",
+            "prenom" : "Simone",
+            "ddn" : new Date("1972-12-10"),
+            "adresse" : {
+                "pays" : "Spain"
+            },
+            "bagage" : {
+                "nombre" : 1,
+                "poidsTotal" : 7.2
+            }
+        }
+    ],
+    "destination": "Dublin",
+    "heureDepart": new Date("2024-07-01T04:32:00Z"),
+    "heureEmbarquement": new Date("2024-07-01T03:32:00Z"),
+    "hoteAccueil1":{
+        "id" : 1,
+        "tel" : "07 00 29 14 88",
+        "nom" : "Jean",
+        "prenom" : "Rousseau",
+        "ddn" : new Date("1981-03-10"),
+        "adresse" : {
+            "rue" : "boulevard de Port Royal",
+            "numero" : 37,
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+    },
+    "hoteAccueil2":{
+        "id" : 2,
+        "tel" : "07 05 29 14 88",
+        "nom" : "La Fontaine",
+        "prenom" : "Jeanne",
+        "ddn" : new Date("1965-01-10"),
+        "adresse" : {
+            "rue" : "rue Maurice D'ocagne",
+            "numero" : 12,
+            "ville" : "Paris",
+            "pays" : "France"
+        }
+    }
+    }
+]);
